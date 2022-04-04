@@ -1,11 +1,12 @@
+import * as edgedb from "edgedb";
 import Fastify from "fastify";
-
 const main = async (): Promise<void> => {
   // Write a fastify server
   const app = Fastify({
     logger: true,
   });
-
+  const client = edgedb.createClient();
+  await client.ensureConnected();
   // Add a route
   app.get("/", async (request, reply) => {
     return { hello: "world" };

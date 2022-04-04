@@ -1,0 +1,182 @@
+[
+  {
+    "cashBalance": 4483.84,
+    "menu": [
+      {
+        "dishName": "Postum cereal coffee",
+        "price": 13.88
+      },
+      {
+        "dishName": "GAI TOM KA: CHICKEN IN COCONUT CREAM SOUP WITH LIME JUICE GALANGA AND CHILI",
+        "price": 10.64
+      },
+      {
+        "dishName": "Coffee Cocktail (Port Wine",
+        "price": 12.45
+      },
+      {
+        "dishName": "La Romaine Braisée au Fond de Veau",
+        "price": 10.59
+      },
+      {
+        "dishName": "DRY LIGHT IMPORTED WINE",
+        "price": 13.5
+      },
+      {
+        "dishName": "Broiled Pompano",
+        "price": 13.5
+      },
+      {
+        "dishName": "Dean Yale School of Medicine",
+        "price": 12.56
+      },
+      {
+        "dishName": "Place here Stamp",
+        "price": 12.38
+      },
+      {
+        "dishName": "1908 Berncasteler",
+        "price": 11.64
+      },
+      {
+        "dishName": "Hummersuppe Filetsteak Nelson",
+        "price": 10.51
+      },
+      {
+        "dishName": "Hominy",
+        "price": 10.2
+      },
+      {
+        "dishName": "Baltimore terrapin",
+        "price": 14
+      },
+      {
+        "dishName": "Lettuce and Tomato Salads",
+        "price": 11.79
+      },
+      {
+        "dishName": "Sweet Virginia Pickles",
+        "price": 10.15
+      }
+    ],
+    "openingHours": "Mon, Fri 2:30 pm - 8 pm / Tues 11 am - 2 pm / Weds 1:15 pm - 3:15 am / Thurs 10 am - 3:15 am / Sat 5 am - 11:30 am / Sun 10:45 am - 5 pm",
+    "restaurantName": "'Ulu Ocean Grill and Sushi Lounge"
+  },
+  {
+    "cashBalance": 4882.81,
+    "menu": [
+      {
+        "dishName": "Sweetbreads",
+        "price": 13.57
+      },
+      {
+        "dishName": "Old pepper bourbon",
+        "price": 10.15
+      },
+      {
+        "dishName": "Whiskey Cocktails",
+        "price": 10.25
+      },
+      {
+        "dishName": "Filets de poularde",
+        "price": 11.15
+      },
+      {
+        "dishName": "Baked Weakfish with Boiled Potatoes",
+        "price": 10.25
+      },
+      {
+        "dishName": "Ox=tail Ragout with Vegetables",
+        "price": 10.35
+      },
+      {
+        "dishName": "1952er Gau Algesheimer Stolzenberg natur",
+        "price": 12.34
+      },
+      {
+        "dishName": "Caneton à l'Orange",
+        "price": 11.09
+      },
+      {
+        "dishName": "*COLD-Mayonnaise of Fish Printaniere",
+        "price": 12
+      },
+      {
+        "dishName": "Rum & Raisin Ice Cream",
+        "price": 13.86
+      },
+      {
+        "dishName": "Fried",
+        "price": 10.25
+      },
+      {
+        "dishName": "German potato salad",
+        "price": 10.1
+      }
+    ],
+    "openingHours": "Mon, Weds 11:45 am - 4:45 pm / Tues 7:45 am - 2 am / Thurs 5:45 pm - 12 am / Fri, Sun 6 am - 9 pm / Sat 10:15 am - 9 pm",
+    "restaurantName": "024 Grille"
+  },
+  {
+    "cashBalance": 1320.19,
+    "menu": [
+      {
+        "dishName": "Chicken Bouillon with Rice (10 min.)",
+        "price": 13.95
+      },
+      {
+        "dishName": "Frogs' legs in every style",
+        "price": 11.95
+      },
+      {
+        "dishName": "Komarinon",
+        "price": 12.81
+      },
+      {
+        "dishName": "Le Fromage Assortie",
+        "price": 12.13
+      },
+      {
+        "dishName": "Frog legs saute",
+        "price": 11
+      },
+      {
+        "dishName": "Broiled Redfish Steak",
+        "price": 10.1
+      },
+      {
+        "dishName": "Filet of kingfish",
+        "price": 12.13
+      },
+      {
+        "dishName": "Marinated Mackerel",
+        "price": 13.3
+      },
+      {
+        "dishName": "Beefsteak braise",
+        "price": 12.8
+      }
+    ],
+    "openingHours": "Mon, Weds 3:45 pm - 5 pm / Tues 11:30 am - 3 am / Thurs 10 am - 11:30 pm / Fri 7 am - 9:45 am / Sat 12:45 pm - 1:15 pm / Sun 2 pm - 7 pm",
+    "restaurantName": "100% Mexicano Restaurant"
+  },
+  {
+    "cashBalance": 4629.91,
+    "menu": [
+      {
+        "dishName": "Fillet of Sole",
+        "price": 10.9
+      },
+      {
+        "dishName": "Consomme Dame Blanche",
+        "price": 10.3
+      },
+      {
+        "dishName": "Fasan in Speck",
+        "price": 13.3
+      }
+    ],
+    "openingHours": "Mon 5:30 am - 6 pm / Tues 10 am - 12:15 am / Weds 1:45 pm - 4:45 pm / Thurs 7:15 am - 3:45 am / Fri 1:30 pm - 12:45 am / Sat 7 am - 11:45 am / Sun 1:15 pm - 12:30 am",
+    "restaurantName": "100% de Agave"
+  }
+]
