@@ -19,6 +19,7 @@ const restaurantAndMenuSeeding = async () => {
 
     const openingHoursArray = openingHours.split("/");
     const openingHoursArr: OpeningHour[] = [];
+    const openedDaysArr: string[] = [];
 
     openingHoursArray.map((openingHours) => {
       // closing hours from the end of the line. and remove them from origin opening hours
@@ -39,6 +40,8 @@ const restaurantAndMenuSeeding = async () => {
 
       // split openingHoursWithoutOpeningHour by , and then map through it, use the values and push them to openingHoursO
       openingHoursWithoutOpeningHour.split(",").map((day) => {
+        const dayWithoutSpace = day.trim().split(" ")[0];
+        openedDaysArr.push(dayWithoutSpace.toUpperCase());
         // Extract fromHours and fromMinutes from openingHour
         const fromHoursOpening = openingHour.split(" ");
         const [hoursOpening, minsOpening] = fromHoursOpening[0].split(":");
@@ -70,9 +73,9 @@ const restaurantAndMenuSeeding = async () => {
     });
     // Insert restaurant data and return back id
     const restaurantId = await sql`
-      INSERT INTO restaurant (name, balance, opening_hours) VALUES (${restaurantName}, ${cashBalance}, ${JSON.stringify(
+      INSERT INTO restaurant (name, balance, opening_hours,days_opened) VALUES (${restaurantName}, ${cashBalance}, ${JSON.stringify(
       openingHoursArr
-    )}) RETURNING id`;
+    )}, ${openedDaysArr}) RETURNING id`;
 
     console.log(restaurantId[0].id);
 

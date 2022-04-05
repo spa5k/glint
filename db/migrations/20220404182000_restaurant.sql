@@ -5,7 +5,8 @@ CREATE TABLE restaurant (
   "created_at" timestamptz NOT NULL DEFAULT (now()),
   "updated_at" timestamptz NOT NULL DEFAULT (now()),
   "opening_hours" json NOT NULL,
-  "name" citext NOT NULL UNIQUE
+  "name" citext NOT NULL UNIQUE,
+  "days_opened" text[] NOT NULL DEFAULT '{}'
 );
 
 -- migrate:down
