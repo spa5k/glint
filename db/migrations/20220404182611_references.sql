@@ -2,8 +2,8 @@
 -- Alter table menu and add one to many relationship with restaurant
 ALTER TABLE menu
   ADD CONSTRAINT restaurant_menu_fk
-  FOREIGN KEY (restaurant_id)
-  REFERENCES menu (id) on delete cascade;
+  FOREIGN KEY ("restaurant_id")
+  REFERENCES restaurant on delete cascade;
 
 
 -- Alter table history and add references to restaurant, menu and user

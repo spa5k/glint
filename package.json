@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node-dev src/index.ts --notify=false"
+    "dev": "node-dev src/index.ts --notify=false",
+    "seed": "node-dev seed/index.ts --notify=false"
   },
   "keywords": [],
   "author": "",
