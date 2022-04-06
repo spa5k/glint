@@ -4,9 +4,9 @@ CREATE TABLE restaurant (
   "balance" numeric(10,2) NOT NULL DEFAULT 0.00,
   "created_at" timestamptz NOT NULL DEFAULT (now()),
   "updated_at" timestamptz NOT NULL DEFAULT (now()),
-  "opening_hours" json NOT NULL,
-  "name" citext NOT NULL UNIQUE,
-  "days_opened" text[] NOT NULL DEFAULT '{}'
+  -- "opening_hours" json NOT NULL,
+  "name" citext NOT NULL
+  -- "days_opened" text[] NOT NULL DEFAULT '{}'
 );
 
 -- migrate:down

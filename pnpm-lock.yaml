@@ -4,6 +4,7 @@ specifiers:
   '@swc/helpers': ^0.3.8
   '@swc/wasm': ^1.2.163
   '@types/node': ^17.0.23
+  dayjs: ^1.11.0
   dprint: ^0.24.3
   fastify: ^3.27.4
   node-dev: ^7.4.2
@@ -14,6 +15,7 @@ specifiers:
   typescript: ^4.6.3
 
 dependencies:
+  dayjs: 1.11.0
   fastify: 3.27.4
   postgres: 3.0.3
 
@@ -145,6 +147,10 @@ packages:
   /dateformat/3.0.3:
     resolution: {integrity: sha512-jyCETtSl3VMZMWeRo7iY1FL19ges1t55hMo5yaam4Jrsm5EPL89UQkoQRyiI+Yf4k8r2ZpdngkV8hr1lIdjb3Q==}
     dev: true
+
+  /dayjs/1.11.0:
+    resolution: {integrity: sha512-JLC809s6Y948/FuCZPm5IX8rRhQwOiyMb2TfVVQEixG7P8Lm/gt5S7yoQZmC8x1UehI9Pb7sksEt4xx14m+7Ug==}
+    dev: false
 
   /debounce/1.2.1:
     resolution: {integrity: sha512-XRRe6Glud4rd/ZGQfiV1ruXSfbvfJedlV9Y6zOlP+2K04vBYiJEte6stfFkCP03aMnY5tsipamumUjL14fofug==}

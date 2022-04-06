@@ -1,20 +1,18 @@
-import * as edgedb from "edgedb";
 import Fastify from "fastify";
+import router from "./router";
+
 const main = async (): Promise<void> => {
   // Write a fastify server
   const app = Fastify({
     logger: true,
   });
-  const client = edgedb.createClient();
-  await client.ensureConnected();
-  // Add a route
-  app.get("/", async (request, reply) => {
-    return { hello: "world" };
-  });
+  app.register(router);
 
   // Run the server!
   try {
     await app.listen(3000);
+    // Print fastify routes
+    console.log(app.printRoutes());
   } catch (err) {
     app.log.error(err);
     process.exit(1);
