@@ -7,8 +7,11 @@ interface IQuerystring {
 }
 
 export default async function dateController(fastify: FastifyInstance) {
-  //     └── date (GET)
-  //         └── / (GET)
+  /*
+    └── / (GET)
+        ├── date (GET)
+        │   └── / (GET)
+  */
   fastify.get<{
     Querystring: IQuerystring;
   }>("/", async (request, reply) => {
@@ -24,8 +27,8 @@ export default async function dateController(fastify: FastifyInstance) {
     try {
       restaurant = await sql`
         select * from restaurant join opening_hours on restaurant.id=opening_hours.restaurant_id where day=${
-          dayInNumber + 1
-        } and hours @> ${time}::time`;
+        dayInNumber + 1
+      } and hours @> ${time}::time`;
     } catch (err) {
       console.error(err);
     }

@@ -1,10 +1,14 @@
 import { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
 
 export default async function userController(fastify: FastifyInstance) {
-  // GET /api/v1/user
+  /*
+    └── / (GET)
+        ├── user (GET)
+    │       └── / (GET)
+  */
   fastify.get(
     "/",
-    async function (_request: FastifyRequest, reply: FastifyReply) {
+    async function(_request: FastifyRequest, reply: FastifyReply) {
       reply.send({
         balance: "$3,277.32",
         picture: "http://placehold.it/32x32",
@@ -14,6 +18,6 @@ export default async function userController(fastify: FastifyInstance) {
         company: "GRONK",
         email: "leonorcross@gronk.com",
       });
-    }
+    },
   );
 }

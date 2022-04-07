@@ -8,9 +8,11 @@ export const extractDay = () => {
   const randomDay = days[Math.floor(Math.random() * days.length)];
   collectedDays.push(randomDay.toUpperCase());
 
-  let randomOpeningHour = `${Math.floor(Math.random() * 12)}:${Math.floor(
-    Math.random() * 60
-  )}`;
+  let randomOpeningHour = `${Math.floor(Math.random() * 12)}:${
+    Math.floor(
+      Math.random() * 60,
+    )
+  }`;
 
   let hoursOpen = randomOpeningHour.split(":")[0];
   let minutesOpen = randomOpeningHour.split(":")[1];
@@ -25,9 +27,11 @@ export const extractDay = () => {
   randomOpeningHour = `${hoursOpen}:${minutesOpen}am`;
 
   // Random closing hour, will always be after random opening hour
-  let randomClosingHour = `${Math.floor(Math.random() * 12)}:${Math.floor(
-    Math.random() * 60
-  )}`;
+  let randomClosingHour = `${Math.floor(Math.random() * 12)}:${
+    Math.floor(
+      Math.random() * 60,
+    )
+  }`;
 
   let hoursClose = randomClosingHour.split(":")[0];
   let minutesClose = randomClosingHour.split(":")[1];

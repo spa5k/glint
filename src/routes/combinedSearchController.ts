@@ -6,10 +6,13 @@ interface IQuerystring {
 }
 
 export default async function combinedSearchController(
-  fastify: FastifyInstance
+  fastify: FastifyInstance,
 ) {
-  //     └── date (GET)
-  //         └── / (GET)
+  /*
+  └── / (GET)
+      └── search (GET)
+          └── / (GET)
+  */
   fastify.get<{
     Querystring: IQuerystring;
   }>("/", async (request, reply) => {

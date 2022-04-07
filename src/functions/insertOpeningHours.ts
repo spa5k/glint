@@ -4,7 +4,7 @@ import { dayToDayNumber } from "../utils/dayToDayString";
 import { extractDay } from "../utils/extractDay";
 
 export const insertOpeningHours = (
-  restaurantId: string
+  restaurantId: string,
 ): postgres.PendingQuery<postgres.Row[]>[] => {
   const promiseArr: postgres.PendingQuery<postgres.Row[]>[] = [];
 
@@ -24,9 +24,7 @@ export const insertOpeningHours = (
     try {
       const promise = sql`
           insert into opening_hours(restaurant_id, day, hours)
-          values (${restaurantId}, ${
-        dayNumber + 1
-      }, ${sql`timerange(${openingHour}, ${closingHour})`}) returning id`;
+          values (${restaurantId}, ${dayNumber + 1}, ${sql`timerange(${openingHour}, ${closingHour})`}) returning id`;
       promiseArr.push(promise);
     } catch (error) {
       console.error("error", error);

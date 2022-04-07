@@ -6,10 +6,15 @@ interface IQuerystring {
 }
 
 export default async function searchRestaurantController(
-  fastify: FastifyInstance
+  fastify: FastifyInstance,
 ) {
-  //     └── date (GET)
-  //         └── / (GET)
+  /*
+    └── / (GET)
+        └── search (GET)
+            └── / (GET)
+                ├── restaurant (GET)
+                    └── / (GET)
+  */
   fastify.get<{
     Querystring: IQuerystring;
   }>("/", async (request, reply) => {

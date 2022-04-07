@@ -58,15 +58,14 @@ const restaurantAndMenuSeeding = async () => {
 };
 
 const userAndHistorySeeding = async () => {
-  for (let index = 0; index < UserData.length; index++) {
-    const user = UserData[index];
+  for (const user of UserData) {
     const { cashBalance, name, purchaseHistory } = user;
 
     // Create user from the values above and return id
     const createdUser = await sql`
       INSERT INTO users (name, balance) VALUES (${name}, ${cashBalance}) RETURNING id`;
     const userId = createdUser[0].id;
-
+    // console.log(createdUser);
     // Map over purchaseHistory.
     // Get restaurant name, dishname
     // Get price
@@ -79,20 +78,33 @@ const userAndHistorySeeding = async () => {
 
       const timestampzDate = new Date(transactionDate).toISOString();
 
-      const res1 = await sql`
+      const data = await sql`
         INSERT INTO history (user_id, menu_id, restaurant_id, amount, created_at) VALUES (${userId}, ${menuId}, ${restaurantId}, ${price}, ${timestampzDate}) returning id`;
+      console.log(data);
     });
   }
 };
 
-restaurantAndMenuSeeding()
-  .then(() => {
-    userAndHistorySeeding();
-  })
-  .catch((err) => {
-    console.log(err);
-  })
+const main = async () => {
+  await restaurantAndMenuSeeding();
+  await userAndHistorySeeding();
+};
+main()
+  .catch(console.error)
   .finally(() => {
     console.log("🚀 Seeding Done");
-    process.exit();
+    process.exit(0);
   });
+// userAndHistorySeeding().catch((err) => {
+//   console.error(err);
+// });
+
+// restaurantAndMenuSeeding()
+//   .then(() => {})
+//   .catch((err) => {
+//     console.error(err);
+//   })
+//   .finally(() => {
+//
+//     process.exit();
+//   });

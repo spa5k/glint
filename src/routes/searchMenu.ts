@@ -6,8 +6,13 @@ interface IQuerystring {
 }
 
 export default async function searchMenuController(fastify: FastifyInstance) {
-  //     └── date (GET)
-  //         └── / (GET)
+  /*
+    └── / (GET)
+        └── search (GET)
+            └── / (GET)
+                ├── menu (GET)
+                │   └── / (GET)
+  */
   fastify.get<{
     Querystring: IQuerystring;
   }>("/", async (request, reply) => {
