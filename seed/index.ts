@@ -45,20 +45,30 @@ const restaurantAndMenuSeeding = async () => {
   }
 };
 
+restaurantAndMenuSeeding().catch((err) => {
+  console.error("restaurantAndMenuSeeding", err);
+});
+
 // // openingHours seeding
 const openingHoursSeeding = async () => {
-  // Get list of IDs of restaurant sorted by created_at
-
-  const res = await sql`SELECT id FROM restaurant ORDER BY created_at`;
-  const promises = [];
+  const res = await sql`SELECT id FROM restaurant`;
+  console.log(res.length);
+  const promises: postgres.PendingQuery<postgres.Row[]>[] = [];
   for (const element of res) {
     const restaurantId = element.id;
-    const promise = insertOpeningHours(restaurantId);
-    promises.push(promise);
+    try {
+      const promise = insertOpeningHours(restaurantId);
+      promises.push(...promise);
+    } catch (err) {
+      continue;
+    }
   }
-  await Promise.all(promises);
+  console.log("Length of promise", promises.length);
+  // await Promise.all(promises);
 };
-openingHoursSeeding().then().catch(console.error);
+openingHoursSeeding().then((res) => {
+  console.log("done", res);
+});
 
 // const userAndHistorySeeding = async () => {
 //   for (let index = 0; index < UserData.length; index++) {
