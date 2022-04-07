@@ -93,5 +93,6 @@ restaurantAndMenuSeeding()
     console.log(err);
   })
   .finally(() => {
-    console.log("Seeding Done");
+    console.log("🚀 Seeding Done");
+    process.exit();
   });
