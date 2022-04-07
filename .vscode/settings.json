@@ -1,4 +1,4 @@
 {
   "editor.defaultFormatter": "dprint.dprint",
-  "conventionalCommits.scopes": ["seed"]
+  "conventionalCommits.scopes": ["seed", "route"]
 }

@@ -1,7 +1,6 @@
 import dayjs from "dayjs";
 import { FastifyInstance } from "fastify";
 import sql from "../config/sql";
-import { dayToDayString } from "../utils/dayToDayString";
 
 // interface IQuerystring {
 //   date: Date;
@@ -11,20 +10,25 @@ export default async function indexController(fastify: FastifyInstance) {
   // GET /
   fastify.get<{
     // Querystring: IQuerystring;
-  }>("/", async (request, reply) => {
-    // Get today's day from Date Obj
-    const now = dayjs().day();
-    // Get today's day as a string
-    const day = dayToDayString(now);
+  }>("/", async (_request, reply) => {
+    const hour = dayjs().hour();
+    const min = dayjs().minute();
+    const amPm = hour >= 12 ? "pm" : "am";
+    const time = `${hour > 12 ? hour % 12 : hour}:${min}${amPm}`;
+    const dayInNumber = dayjs().day();
 
-    // Get all restaurants which are opened today
-    const restaurant = await sql`
-    select * from restaurant where ${day}=ANY(days_opened)
-    `;
-    console.log(restaurant);
+    let restaurant;
+    try {
+      restaurant = await sql`
+        select * from restaurant join opening_hours on restaurant.id=opening_hours.restaurant_id where day=${
+          dayInNumber + 1
+        } and hours @> ${time}::time`;
+    } catch (err) {
+      console.error(err);
+    }
 
     reply.send({
-      date: dayToDayString(now),
+      restaurant,
     });
   });
 }

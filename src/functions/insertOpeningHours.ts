@@ -22,7 +22,7 @@ export const insertOpeningHours = async (restaurantId: string) => {
           insert into opening_hours(restaurant_id, day, hours)
           values (${restaurantId}, ${
       dayNumber + 1
-    }, ${sql`timerange(${openingHour}, ${closingHour})`})`;
+    }, ${sql`timerange(time ${openingHour}, time ${closingHour})`})`;
   } catch (error) {
     console.error("error", error);
   }

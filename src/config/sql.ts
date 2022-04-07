@@ -6,6 +6,7 @@ const sql = postgres({
   host: "localhost",
   database: "core",
   port: 5432,
+  debug: true,
 });
 
 export default sql;
