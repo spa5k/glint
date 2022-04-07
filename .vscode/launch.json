@@ -5,9 +5,10 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "pwa-node",
+      "type": "node",
       "request": "launch",
       "name": "Launch Program",
+      "preLaunchTask": "tsc: build - tsconfig.json",
       "skipFiles": ["<node_internals>/**"],
       "program": "${workspaceFolder}\\seed\\index.ts",
       "outFiles": ["${workspaceFolder}/**/*.js"],

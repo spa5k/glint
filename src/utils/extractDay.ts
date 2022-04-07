@@ -5,60 +5,42 @@ export const extractDay = () => {
 
   const collectedDays: string[] = [];
 
-  // Generate random day
   const randomDay = days[Math.floor(Math.random() * days.length)];
   collectedDays.push(randomDay.toUpperCase());
 
-  // Generate random opening_hours
-  // Sample 11:00am, 1:15pm, 10:00am
   let randomOpeningHour = `${Math.floor(Math.random() * 12)}:${Math.floor(
     Math.random() * 60
   )}`;
 
-  // split randomOpeningHour into hours and minutes
-  // if hours is single digit, add a 0 in front
-  // if minutes is single digit, add a 0 in back
-  let hours = randomOpeningHour.split(":")[0];
-  let minutes = randomOpeningHour.split(":")[1];
-  if (hours.length === 1) {
-    hours = `0${hours}`;
+  let hoursOpen = randomOpeningHour.split(":")[0];
+  let minutesOpen = randomOpeningHour.split(":")[1];
+  if (hoursOpen.length === 1) {
+    hoursOpen = `0${hoursOpen}`;
   }
-  if (minutes.length < 2) {
-    minutes = `0${minutes}`;
+  if (minutesOpen.length < 2) {
+    minutesOpen = `0${minutesOpen}`;
   }
 
   // Join back
-  randomOpeningHour = `${hours}:${minutes}am`;
+  randomOpeningHour = `${hoursOpen}:${minutesOpen}am`;
 
   // Random closing hour, will always be after random opening hour
   let randomClosingHour = `${Math.floor(Math.random() * 12)}:${Math.floor(
     Math.random() * 60
   )}`;
 
-  while (
-    parseInt(randomClosingHour.split(":")[0]) <=
-    parseInt(randomOpeningHour.split(":")[0])
-  ) {
-    randomClosingHour = `${Math.floor(Math.random() * 12)}:${Math.floor(
-      Math.random() * 60
-    )}`;
-  }
+  let hoursClose = randomClosingHour.split(":")[0];
+  let minutesClose = randomClosingHour.split(":")[1];
 
-  // split randomOpeningHour into hours and minutes
-  // if hours is single digit, add a 0 in front
-  // if minutes is single digit, add a 0 in back
-  let hoursC = randomClosingHour.split(":")[0];
-  let minutesC = randomClosingHour.split(":")[1];
-
-  if (hoursC.length < 2) {
-    hoursC = `0${hoursC}`;
+  if (hoursClose.length < 2) {
+    hoursClose = `0${hoursClose}`;
   }
-  if (minutesC.length < 2) {
-    minutesC = `0${minutesC}`;
+  if (minutesClose.length < 2) {
+    minutesClose = `0${minutesClose}`;
   }
 
   // Join back
-  randomClosingHour = `${hoursC}:${minutesC}pm`;
+  randomClosingHour = `${hoursClose}:${minutesClose}pm`;
 
   return {
     openingHour: randomOpeningHour,

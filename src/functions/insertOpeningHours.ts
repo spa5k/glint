@@ -17,28 +17,16 @@ export const insertOpeningHours = (
     const dayNumber = dayToDayNumber(days);
 
     if (daysDone.includes(dayNumber)) {
-      index--;
       continue;
     }
     daysDone.push(dayNumber);
-
-    console.log(
-      "dayNumber",
-      dayNumber,
-      "restaurant_id",
-      restaurantId,
-      "openingHour",
-      openingHour,
-      "closingHour",
-      closingHour
-    );
 
     try {
       const promise = sql`
           insert into opening_hours(restaurant_id, day, hours)
           values (${restaurantId}, ${
         dayNumber + 1
-      }, ${sql`timerange(${openingHour}::time, ${closingHour})::time`})`;
+      }, ${sql`timerange(${openingHour}, ${closingHour})`}) returning id`;
       promiseArr.push(promise);
     } catch (error) {
       console.error("error", error);
