@@ -1,61 +1,64 @@
 // We will first seed restaurant data
 import postgres from "postgres";
 import sql from "../src/config/sql";
-import { dayToDayNumber } from "../src/utils/dayToDayString";
-import { extractDay } from "../src/utils/extractDay";
+import { insertMenu } from "../src/functions/insertMenu";
+import { insertOpeningHours } from "../src/functions/insertOpeningHours";
 import RestaurantData1 from "./restaurant_with_menu.json";
 
 const restaurantAndMenuSeeding = async () => {
-  const openingHoursPromise: postgres.PendingQuery<postgres.Row[]>[] = [];
-  const menuPromise: postgres.PendingQuery<postgres.Row[]>[] = [];
+  const restaurantIdArr: string[] = [];
+  const resPromiseArr: postgres.PendingQuery<postgres.Row[]>[] = [];
+
   for (const restaurant of RestaurantData1) {
     const { cashBalance, restaurantName } = restaurant;
-    const menus = restaurant.menu;
 
-    let restaurantId = "";
-
-    // Insert restaurant data and return back id
     try {
-      const res = await sql`
+      const res = sql`
         INSERT INTO restaurant (name, balance) VALUES (${restaurantName}, ${cashBalance}) RETURNING id`;
-      restaurantId = res[0].id;
-      console.log("restaurant_id", restaurantId);
+      resPromiseArr.push(res);
     } catch (err) {
-      console.log("restaurant", err);
+      console.error("restaurant", err);
       continue;
     }
-
-    // generate random number between 0 and 6
-    const randomDay = Math.floor(Math.random() * 7);
-
-    // use randomDay for a for loop
-    for (let i = 0; i < randomDay; i++) {
-      const { closingHour, days, openingHour } = extractDay();
-
-      const dayNumber = dayToDayNumber(days);
-
-      const promise = sql`
-          insert into opening_hours(restaurant_id, day, hours)
-          values (${restaurantId}, ${
-        dayNumber + 1
-      }, ${sql`timerange(${openingHour}, ${closingHour})`})`;
-      openingHoursPromise.push(promise);
-    }
-
-    menus.map(async (menu) => {
-      const { dishName, price } = menu;
-
-      const promise = sql`INSERT INTO menu (name, price, restaurant_id) VALUES (${dishName}, ${price}, ${restaurantId})`;
-      menuPromise.push(promise);
-    });
   }
-  try {
-    await Promise.all(openingHoursPromise);
-    await Promise.all(menuPromise);
-  } catch (err) {
-    console.log("promise", err);
+
+  const res = await Promise.all(resPromiseArr);
+
+  res.map((rest) => {
+    restaurantIdArr.push(rest[0].id);
+  });
+
+  // check if length of restaurantIdArr is equal to RestaurantData1.length
+  if (restaurantIdArr.length === RestaurantData1.length) {
+    for (let index = 0; index < RestaurantData1.length; index++) {
+      const element = RestaurantData1[index];
+      const restaurantId = restaurantIdArr[index];
+      console.error("Accessing id", restaurantId);
+      const { menu } = element;
+
+      try {
+        await insertMenu(restaurantId, menu);
+      } catch {
+        continue;
+      }
+    }
   }
 };
+
+// // openingHours seeding
+const openingHoursSeeding = async () => {
+  // Get list of IDs of restaurant sorted by created_at
+
+  const res = await sql`SELECT id FROM restaurant ORDER BY created_at`;
+  const promises = [];
+  for (const element of res) {
+    const restaurantId = element.id;
+    const promise = insertOpeningHours(restaurantId);
+    promises.push(promise);
+  }
+  await Promise.all(promises);
+};
+openingHoursSeeding().then().catch(console.error);
 
 // const userAndHistorySeeding = async () => {
 //   for (let index = 0; index < UserData.length; index++) {
@@ -86,10 +89,10 @@ const restaurantAndMenuSeeding = async () => {
 //   }
 // };
 
-restaurantAndMenuSeeding()
-  // .then(() => {
-  //   // userAndHistorySeeding();
-  // })
-  .catch((err) => {
-    console.log(err);
-  });
+// restaurantAndMenuSeeding().catch(console.error);
+//   // .then(() => {
+//   //   // userAndHistorySeeding();
+//   // })
+//   .catch((err) => {
+//     console.log(err);
+//   });

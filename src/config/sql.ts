@@ -9,7 +9,3 @@ const sql = postgres({
 });
 
 export default sql;
-// Postgres connection string with ssl disabled/off
-// postgres://core:core@localhost:5432/core
-// Disabled ssl string
-// postgres://core:core@localhost:5432/core?sslmode=disable
