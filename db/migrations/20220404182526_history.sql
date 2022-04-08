@@ -1,19 +1,14 @@
 -- migrate:up
+
 -- Postgres Function that will take a menu id parameter and return the menu price
 -- @param menu_id
 -- @returns menu price
 
 CREATE OR REPLACE FUNCTION get_menu_price(menu_id uuid)
   RETURNS numeric(10,2) AS
-$BODY$
-DECLARE
-  menu_price numeric(10,2);
-BEGIN
-  SELECT price INTO menu_price FROM menu WHERE id = menu_id;
-  RETURN menu_price;
-END;
-$BODY$
-  LANGUAGE plpgsql;
+$$
+  SELECT price FROM menu WHERE id = menu_id
+$$ LANGUAGE sql STABLE;
 
 
 CREATE TABLE history (
