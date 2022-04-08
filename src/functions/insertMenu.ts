@@ -6,7 +6,7 @@ export const insertMenu = async (
   menus: {
     dishName: string;
     price: number;
-  }[]
+  }[],
 ) => {
   const menuPromise: postgres.PendingQuery<postgres.Row[]>[] = [];
 
@@ -17,7 +17,8 @@ export const insertMenu = async (
     // Round the number to 2 decimal places
     const roundedPrice = Math.round(randomPrice * 100) / 100;
 
-    const promise = sql`INSERT INTO menu (name, price, restaurant_id) VALUES (${dishName}, ${roundedPrice}, ${restaurantId})`;
+    const promise = sql
+      `INSERT INTO menu (name, price, restaurant_id) VALUES (${dishName}, ${roundedPrice}, ${restaurantId})`;
     menuPromise.push(promise);
   });
 

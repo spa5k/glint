@@ -5,6 +5,7 @@ import indexController from "./routes/indexController";
 import searchMenuController from "./routes/searchMenu";
 import searchRestaurantController from "./routes/searchRestaurant";
 import topDisherController from "./routes/topDishesController";
+import transactionController from "./routes/transactionController";
 import userController from "./routes/userController";
 
 export default async function router(fastify: FastifyInstance) {
@@ -17,6 +18,9 @@ export default async function router(fastify: FastifyInstance) {
   fastify.register(searchMenuController, { prefix: "/search/menu" });
   fastify.register(searchRestaurantController, {
     prefix: "/search/restaurant",
+  });
+  fastify.register(transactionController, {
+    prefix: "/buy",
   });
   fastify.register(topDisherController, {
     prefix: "/top",

@@ -10,11 +10,7 @@ ALTER TABLE opening_hours
   FOREIGN KEY ("restaurant_id")
   REFERENCES restaurant on delete cascade;
 
--- Alter table history and add references to restaurant, menu and user
-ALTER TABLE history
-  ADD CONSTRAINT restaurant_history_fk
-  FOREIGN KEY (restaurant_id)
-  REFERENCES restaurant (id) on delete cascade;
+
 
 ALTER TABLE history
   ADD CONSTRAINT menu_history_fk

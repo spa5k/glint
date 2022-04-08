@@ -2,13 +2,13 @@ lockfileVersion: 5.3
 
 specifiers:
   '@swc/helpers': ^0.3.8
-  '@swc/wasm': ^1.2.163
+  '@swc/wasm': ^1.2.164
   '@types/node': ^17.0.23
   dayjs: ^1.11.0
-  dprint: ^0.24.3
-  fastify: ^3.27.4
+  dprint: ^0.24.4
+  fastify: ^3.28.0
   node-dev: ^7.4.2
-  postgres: ^3.0.3
+  postgres: ^3.0.5
   regenerator-runtime: ^0.13.9
   ts-node: ^10.7.0
   tslib: ^2.3.1
@@ -16,17 +16,17 @@ specifiers:
 
 dependencies:
   dayjs: 1.11.0
-  fastify: 3.27.4
-  postgres: 3.0.3
+  fastify: 3.28.0
+  postgres: 3.0.5
 
 devDependencies:
   '@swc/helpers': 0.3.8
-  '@swc/wasm': 1.2.163
+  '@swc/wasm': 1.2.164
   '@types/node': 17.0.23
-  dprint: 0.24.3
+  dprint: 0.24.4
   node-dev: 7.4.2
   regenerator-runtime: 0.13.9
-  ts-node: 10.7.0_be69b957852b5aa6ebc20b6c82356462
+  ts-node: 10.7.0_22c381cc0b0dd237c0467fe178cfa563
   tslib: 2.3.1
   typescript: 4.6.3
 
@@ -54,8 +54,8 @@ packages:
     resolution: {integrity: sha512-aWItSZvJj4+GI6FWkjZR13xPNPctq2RRakzo+O6vN7bC2yjwdg5EFpgaSAUn95b7BGSgcflvzVDPoKmJv24IOg==}
     dev: true
 
-  /@swc/wasm/1.2.163:
-    resolution: {integrity: sha512-YZMIo5NM1UBP0pHWZwWdKSTw0zxtrqJbGv5Dc4AjE6jjTFZRF+rWk+UMPbaBjHh32pCVY1UntCmLvHGJ3aviPg==}
+  /@swc/wasm/1.2.164:
+    resolution: {integrity: sha512-1zKQgXiBaFPlzSX2zLm1aajYcmUpvtq8Rl2RKu6j1gWOTTkTPoaHp1XO2JBT64Tf1G42FCd9yDuB3DdqHu58Xw==}
     dev: true
 
   /@tsconfig/node10/1.0.8:
@@ -178,8 +178,8 @@ packages:
     engines: {node: '>=0.3.1'}
     dev: true
 
-  /dprint/0.24.3:
-    resolution: {integrity: sha512-e0ZldBGXDCIskrDD1cWceU6eSF+vQiCUQzVaxxiptw+CyrV13iyZhEE22HL6/rd3haQxofbmshzRFOCy6wjXXw==}
+  /dprint/0.24.4:
+    resolution: {integrity: sha512-Kt88R/6AeLIu/lIQS3VnWkzC8qdyiX3qxuFwLuF8nvfO06C9UAA8EUZ9n1yDhWLpafisdvyKE1ybeCmPsb2xPg==}
     hasBin: true
     requiresBuild: true
     dev: true
@@ -225,8 +225,8 @@ packages:
     resolution: {integrity: sha512-oCfpcsDndgnDVgiI7bwFKAun2dO+4h84vBlkWsWnz/OUK9Reff5UFoFl241xTiLeHWX/vU9zkDVXqYUxjOwHcQ==}
     dev: false
 
-  /fastify/3.27.4:
-    resolution: {integrity: sha512-SOfnHBxG9zxCSIvt6aHoR/cao8QBddWmGP/mb5KQKRc+KI1kB7b79M2hCDOTSyHdLAF2OX+oI6X3weeLc+MqKg==}
+  /fastify/3.28.0:
+    resolution: {integrity: sha512-LAQtGllpkRe8L6Tpf3zdbvXzXFOrgaWV3Tbvp3xMv9ngcr9zht9U2/mo5zq9qp9kplSiBJ0w43aVAMqv6PBMbw==}
     dependencies:
       '@fastify/ajv-compiler': 1.1.0
       abstract-logging: 2.0.1
@@ -408,8 +408,8 @@ packages:
       sonic-boom: 1.4.1
     dev: false
 
-  /postgres/3.0.3:
-    resolution: {integrity: sha512-uw6ZIR9LTJUT5f3Wz9JdT9L9U4GGlDjWYgGNSEbJPvqMsY+UUInaf16Oa94lJdjQaft6lhlr3LFl/iPZJoNlkg==}
+  /postgres/3.0.5:
+    resolution: {integrity: sha512-/9VVVRG+bzLc/AB6QukEV+SERra2IRduGd8PDz/ZGu+1PQ6+TgCQYvX87GtPfxcYW4XZ58cyurJojnphdazW1g==}
     dev: false
 
   /process-warning/1.0.0:
@@ -519,7 +519,7 @@ packages:
     engines: {node: '>=6'}
     dev: false
 
-  /ts-node/10.7.0_be69b957852b5aa6ebc20b6c82356462:
+  /ts-node/10.7.0_22c381cc0b0dd237c0467fe178cfa563:
     resolution: {integrity: sha512-TbIGS4xgJoX2i3do417KSaep1uRAW/Lu+WAL2doDHC0D6ummjirVOXU5/7aiZotbQ5p1Zp9tP7U6cYhA0O7M8A==}
     hasBin: true
     peerDependencies:
@@ -534,7 +534,7 @@ packages:
         optional: true
     dependencies:
       '@cspotcode/source-map-support': 0.7.0
-      '@swc/wasm': 1.2.163
+      '@swc/wasm': 1.2.164
       '@tsconfig/node10': 1.0.8
       '@tsconfig/node12': 1.0.9
       '@tsconfig/node14': 1.0.1

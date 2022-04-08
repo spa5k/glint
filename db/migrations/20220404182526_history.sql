@@ -1,10 +1,26 @@
 -- migrate:up
+-- Postgres Function that will take a menu id parameter and return the menu price
+-- @param menu_id
+-- @returns menu price
+
+CREATE OR REPLACE FUNCTION get_menu_price(menu_id uuid)
+  RETURNS numeric(10,2) AS
+$BODY$
+DECLARE
+  menu_price numeric(10,2);
+BEGIN
+  SELECT price INTO menu_price FROM menu WHERE id = menu_id;
+  RETURN menu_price;
+END;
+$BODY$
+  LANGUAGE plpgsql;
+
+
 CREATE TABLE history (
   "id" uuid PRIMARY KEY NOT NULL DEFAULT uuid_generate_v4(),
-  "amount" numeric(10,2) NOT NULL DEFAULT 0.00,
+  "amount" numeric(10,2) NOT NULL CHECK ("amount" = get_menu_price(menu_id)),
   "created_at" timestamptz NOT NULL DEFAULT (now()),
   "updated_at" timestamptz NOT NULL DEFAULT (now()),
-  "restaurant_id" uuid NOT NULL,
   "menu_id" uuid NOT NULL,
   "user_id" uuid NOT NULL
 );
@@ -12,3 +28,4 @@ CREATE TABLE history (
 -- migrate:down
 
 DROP TABLE IF EXISTS history;
+DROP FUNCTION IF EXISTS get_menu_price;

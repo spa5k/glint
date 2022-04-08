@@ -78,9 +78,8 @@ const userAndHistorySeeding = async () => {
 
       const timestampzDate = new Date(transactionDate).toISOString();
 
-      const data = await sql`
-        INSERT INTO history (user_id, menu_id, restaurant_id, amount, created_at) VALUES (${userId}, ${menuId}, ${restaurantId}, ${price}, ${timestampzDate}) returning id`;
-      console.log(data);
+      await sql`
+        INSERT INTO history (user_id, menu_id,  amount, created_at) VALUES (${userId}, ${menuId}, ${price}, ${timestampzDate}) returning id`;
     });
   }
 };
