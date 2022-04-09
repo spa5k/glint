@@ -67,7 +67,7 @@ var main = function () { return __awaiter(void 0, void 0, void 0, function () {
                 _a.label = 2;
             case 2:
                 _a.trys.push([2, 4, , 5]);
-                return [4 /*yield*/, app.listen(3000)];
+                return [4 /*yield*/, app.listen(process.env.PORT)];
             case 3:
                 _a.sent();
                 // Print fastify routes

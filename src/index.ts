@@ -23,7 +23,7 @@ const main = async (): Promise<void> => {
 
   // Run the server!
   try {
-    await app.listen(3000);
+    await app.listen(process.env.PORT);
     // Print fastify routes
     console.log(app.printRoutes());
   } catch (err) {
