@@ -9,7 +9,7 @@
     "format": "dprint fmt",
     "test": "vitest",
     "coverage": "vitest run --coverage",
-    "build": "yarn tsc",
+    "build": "node dist/seed/index.js",
     "start": "node dist/src/index.js",
     "prestart": "seed"
   },
