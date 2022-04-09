@@ -72,9 +72,9 @@ const userAndHistorySeeding = async () => {
     purchaseHistory.map(async (purchase) => {
       const { dishName, restaurantName, transactionDate } = purchase;
       const res = await sql`
-        select menu.id as "menuId",price,restaurant.id as "restaurantId" from menu JOIN restaurant ON menu.restaurant_id=restaurant.id where menu.name = ${dishName} and restaurant.name = ${restaurantName}`;
+        select menu.id as "menuId",price from menu JOIN restaurant ON menu.restaurant_id=restaurant.id where menu.name = ${dishName} and restaurant.name = ${restaurantName}`;
 
-      const { menuId, restaurantId, price } = res[0];
+      const { menuId, price } = res[0];
 
       const timestampzDate = new Date(transactionDate).toISOString();
 
@@ -94,16 +94,3 @@ main()
     console.log("🚀 Seeding Done");
     process.exit(0);
   });
-// userAndHistorySeeding().catch((err) => {
-//   console.error(err);
-// });
-
-// restaurantAndMenuSeeding()
-//   .then(() => {})
-//   .catch((err) => {
-//     console.error(err);
-//   })
-//   .finally(() => {
-//
-//     process.exit();
-//   });
