@@ -6,7 +6,7 @@ interface IQuerystring {
 }
 
 export default async function combinedSearchController(
-  fastify: FastifyInstance
+  fastify: FastifyInstance,
 ) {
   /*
   └── / (GET)

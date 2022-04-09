@@ -12,7 +12,7 @@ export default async function transactionController(fastify: FastifyInstance) {
     ├── buy (GET)
         └── / (GET)
   */
-  fastify.get<{
+  fastify.post<{
     Querystring: IQuerystring;
   }>("/", async (request, reply) => {
     const { menuId, userId } = request.query;

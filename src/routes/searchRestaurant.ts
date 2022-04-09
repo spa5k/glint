@@ -6,7 +6,7 @@ interface IQuerystring {
 }
 
 export default async function searchRestaurantController(
-  fastify: FastifyInstance
+  fastify: FastifyInstance,
 ) {
   /*
     └── / (GET)

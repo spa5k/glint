@@ -21,8 +21,7 @@ export default async function topDisherController(fastify: FastifyInstance) {
     if (!max || !min || !limit) {
       reply.code(400).send({
         error: "Bad Request",
-        message:
-          "Missing query parameters, please send max,min and limit as params",
+        message: "Missing query parameters, please send max,min and limit as params",
       });
       return;
     }

@@ -7,7 +7,7 @@ servers:
 paths:
   /user:
     get:
-      summary: Your GET endpoint
+      summary: Get specific user by id
       tags:
         - User
         - List
@@ -109,17 +109,17 @@ paths:
                     error: Internal Server Error
                     message: Something went wrong
       operationId: get-users
-      description: ''
       parameters:
         - schema:
             type: string
           in: query
           name: userId
           description: User's ID
+      description: Get specific user by id
     parameters: []
   /:
     get:
-      summary: Your GET endpoint
+      summary: Get list of restaurants opened currently
       tags:
         - List
       responses:
@@ -185,12 +185,28 @@ paths:
                         id: 2dd86b1e-6cee-41e3-a4c7-5e611614adf2
                         day: 7
                         hours: '[01:02:00,17:18:00)'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                No restaurant error:
+                  value:
+                    error: No Restaurants found opened at current time
+                    message: No restaurants opened at this time
       operationId: get-*
-      description: This will return the restaurants opened at the time request is done
+      description: Get list of restaurants opened currently
     parameters: []
   /date:
     get:
-      summary: Your GET endpoint
+      summary: Get list of restaurants opened at certain date
       tags:
         - List
         - Date
@@ -269,6 +285,33 @@ paths:
                         id: a3f6bacf-75c2-4abe-a04b-0736cd87947d
                         day: 5
                         hours: '[07:54:00,23:58:00)'
+        '404':
+          description: Not Found
+          headers: {}
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  error:
+                    type: string
+                    minLength: 1
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                  - error
+                  - message
+                x-examples:
+                  example-1:
+                    error: No Restaurants found opened at current time
+                    message: No restaurants opened at this time
+              examples:
+                no restaurant found:
+                  value:
+                    error: No Restaurants found opened at current time
+                    message: No restaurants opened at this time
       operationId: get-date
       parameters:
         - schema:
@@ -279,9 +322,10 @@ paths:
           name: date
           description: Datetime at which opened restaurants needs to be checked
           required: true
+      description: Get list of restaurants opened at certain date
   /search:
     get:
-      summary: Your GET endpoint
+      summary: Combined search specific term on restaurant and menu
       tags:
         - List
         - Search
@@ -363,6 +407,58 @@ paths:
                         price: '224.02'
                         restaurantName: '''Ulu Ocean Grill and Sushi Lounge'
                         restaurantId: 9024854a-356d-4c31-a0cc-fe69c478f76f
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  error:
+                    type: string
+                    minLength: 1
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                  - error
+                  - message
+                x-examples:
+                  example-1:
+                    error: Not Found
+                    message: No data found
+              examples:
+                No menu or restaurant have such a name:
+                  value:
+                    error: Not Found
+                    message: No data found
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  error:
+                    type: string
+                    minLength: 1
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                  - error
+                  - message
+                x-examples:
+                  example-1:
+                    error: Internal Server Error
+                    message: Something went wrong
+              examples:
+                something went wrong:
+                  value:
+                    error: Internal Server Error
+                    message: Something went wrong
       operationId: get-search
       parameters:
         - schema:
@@ -371,10 +467,10 @@ paths:
           name: name
           description: name of the dish or restaurant
           required: true
-      description: Combined Dish/Restaurant searching endpoint
+      description: Combined search specific term on restaurant and menu
   /search/menu:
     get:
-      summary: Your GET endpoint
+      summary: Search menu by name
       tags:
         - List
         - Search
@@ -455,8 +551,60 @@ paths:
                         price: '619.03'
                         restaurantName: 1913 Restaurant
                         restaurantId: 226eb970-122d-4a27-bf68-405c513edab3
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  error:
+                    type: string
+                    minLength: 1
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                  - error
+                  - message
+                x-examples:
+                  example-1:
+                    error: Not Found
+                    message: No data found
+              examples:
+                No such menu/dish:
+                  value:
+                    error: Not Found
+                    message: No data found
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  error:
+                    type: string
+                    minLength: 1
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                  - error
+                  - message
+                x-examples:
+                  example-1:
+                    error: Internal Server Error
+                    message: Something went wrong
+              examples:
+                something went wrong:
+                  value:
+                    error: Internal Server Error
+                    message: Something went wrong
       operationId: get-search-menu
-      description: Menu searching endpoint
+      description: Search menu by name
       parameters:
         - schema:
             type: string
@@ -467,7 +615,7 @@ paths:
           description: Name of the dish that needs to be searched in the menu
   /search/restaurant:
     get:
-      summary: Your GET endpoint
+      summary: Search restaurant by name
       tags:
         - List
         - Search
@@ -543,8 +691,60 @@ paths:
                         restaurantId: d9e8e00a-1781-467f-b8b4-d23abeaf4f2f
                       - restaurantName: Azurea at One Ocean
                         restaurantId: fc17b020-596b-4753-ad59-80af318ae241
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  error:
+                    type: string
+                    minLength: 1
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                  - error
+                  - message
+                x-examples:
+                  example-1:
+                    error: Not Found
+                    message: No data found
+              examples:
+                no such restaurant:
+                  value:
+                    error: Not Found
+                    message: No data found
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  error:
+                    type: string
+                    minLength: 1
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                  - error
+                  - message
+                x-examples:
+                  example-1:
+                    error: Internal Server Error
+                    message: Something went wrong
+              examples:
+                something went wrong:
+                  value:
+                    error: Internal Server Error
+                    message: Something went wrong
       operationId: get-search-restaurant
-      description: Menu searching endpoint
+      description: Search restaurant by name
       parameters:
         - schema:
             type: string
@@ -555,8 +755,8 @@ paths:
           description: Name of the restaurant that needs to be searched
     parameters: []
   /buy:
-    get:
-      summary: Your GET endpoint
+    post:
+      summary: Do a transaction by sending userId and the id of menu that will be bought
       tags:
         - Transaction
         - User
@@ -639,6 +839,32 @@ paths:
                   value:
                     error: Bad Request
                     message: Insufficient balance
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  error:
+                    type: string
+                    minLength: 1
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                  - error
+                  - message
+                x-examples:
+                  example-1:
+                    error: Internal Server Error
+                    message: Something went wrong
+              examples:
+                Something went wrong:
+                  value:
+                    error: Internal Server Error
+                    message: Something went wrong
       operationId: get-buy
       parameters:
         - schema:
@@ -655,9 +881,10 @@ paths:
           name: menuId
           description: Id of the dish that is going to be bought
           required: true
+      description: Do a transaction by sending userId and the id of menu that will be bought
   /top:
     get:
-      summary: Your GET endpoint
+      summary: Get top x restaurants based on the number of dishes with prices in certain range
       tags:
         - List
         - Ranking
@@ -715,6 +942,58 @@ paths:
                         id: 2fc3ac2f-3998-4221-81ec-42e5fc1f051b
                       - name: 1515 Restaurant
                         id: 224e44a3-d70e-44fe-bfa8-c32ce4af504d
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  error:
+                    type: string
+                    minLength: 1
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                  - error
+                  - message
+                x-examples:
+                  example-1:
+                    error: Not Found
+                    message: No data found
+              examples:
+                No top ranking restaurants found:
+                  value:
+                    error: Not Found
+                    message: No data found
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  error:
+                    type: string
+                    minLength: 1
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                  - error
+                  - message
+                x-examples:
+                  example-1:
+                    error: Internal Server Error
+                    message: Something went wrong
+              examples:
+                server went wrong:
+                  value:
+                    error: Internal Server Error
+                    message: Something went wrong
       operationId: get-top
       parameters:
         - schema:
@@ -742,7 +1021,7 @@ paths:
           name: limit
           description: limit of restaurants that needs to be found
           required: true
-      description: ''
+      description: Get top x restaurants based on the number of dishes with prices in certain range
 components:
   schemas:
     User:
