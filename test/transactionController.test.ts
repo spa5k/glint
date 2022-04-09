@@ -32,7 +32,12 @@ describe("menuSearch", async () => {
     const menuPrice = parseFloat(menu.price);
     const finalPrice = usersBalance - menuPrice;
 
+    // Round finalPrice to 2 decimal places
+    const roundedFinalPrice = Math.round(finalPrice * 100) / 100;
+    const roundedUserBalance =
+      Math.round(parseFloat(json.user.balance) * 100) / 100;
+
     // @ts-ignore
-    expect(parseFloat(json.user.balance)).toEqual(finalPrice);
+    expect(roundedUserBalance).toEqual(parseFloat(roundedFinalPrice));
   });
 });

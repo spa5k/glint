@@ -13,7 +13,7 @@ export default async function userController(fastify: FastifyInstance) {
   */
   fastify.get<{
     Querystring: IQuerystring;
-  }>("/", async (request, reply) => {
+  }>(":userId", async (request, reply) => {
     console.log(request.query);
     const userId = request.query.userId;
 

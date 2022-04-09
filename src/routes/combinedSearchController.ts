@@ -6,7 +6,7 @@ interface IQuerystring {
 }
 
 export default async function combinedSearchController(
-  fastify: FastifyInstance,
+  fastify: FastifyInstance
 ) {
   /*
   └── / (GET)
@@ -15,7 +15,7 @@ export default async function combinedSearchController(
   */
   fastify.get<{
     Querystring: IQuerystring;
-  }>("/", async (request, reply) => {
+  }>(":name", async (request, reply) => {
     const { name } = request.query;
 
     let data;

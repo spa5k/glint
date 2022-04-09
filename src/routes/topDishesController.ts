@@ -15,16 +15,17 @@ export default async function topDisherController(fastify: FastifyInstance) {
   */
   fastify.get<{
     Querystring: IQuerystring;
-  }>("/", async (request, reply) => {
+  }>(":max:min:limit", async (request, reply) => {
     const { max, min, limit } = request.query;
     // Extract hour, mins, am pm from date
-    if (!max || !min || !limit) {
+    if (!max || !min) {
       reply.code(400).send({
         error: "Bad Request",
-        message: "Missing query parameters, please send max,min and limit as params",
+        message: "Missing query parameters, please send max and min as params",
       });
       return;
     }
+    const currLimit = limit ?? 5;
 
     let data;
     try {
@@ -34,7 +35,7 @@ export default async function topDisherController(fastify: FastifyInstance) {
         left join menu m on m.restaurant_id=rs.id 
         where m.price between ${min} and ${max} 
         group by rs.name, rs.id having count(m.name)>5 
-        order by rs.name limit ${limit};
+        order by rs.name limit ${currLimit};
       `;
     } catch (err) {
       console.log(err);

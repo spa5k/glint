@@ -6,7 +6,7 @@ interface IQuerystring {
 }
 
 export default async function searchRestaurantController(
-  fastify: FastifyInstance,
+  fastify: FastifyInstance
 ) {
   /*
     └── / (GET)
@@ -17,7 +17,7 @@ export default async function searchRestaurantController(
   */
   fastify.get<{
     Querystring: IQuerystring;
-  }>("/", async (request, reply) => {
+  }>(":name", async (request, reply) => {
     const { name } = request.query;
     // Extract hour, mins, am pm from date
     let data;

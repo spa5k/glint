@@ -14,14 +14,15 @@ export default async function transactionController(fastify: FastifyInstance) {
   */
   fastify.post<{
     Querystring: IQuerystring;
-  }>("/", async (request, reply) => {
+  }>(":userId:menuId", async (request, reply) => {
     const { menuId, userId } = request.query;
     // Extract hour, mins, am pm from date
 
     if (!menuId || !userId) {
       reply.code(400).send({
         error: "Bad Request",
-        message: "Missing query parameters, please send menuId and userId as params",
+        message:
+          "Missing query parameters, please send menuId and userId as params",
       });
       return;
     }

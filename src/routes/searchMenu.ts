@@ -15,7 +15,7 @@ export default async function searchMenuController(fastify: FastifyInstance) {
   */
   fastify.get<{
     Querystring: IQuerystring;
-  }>("/", async (request, reply) => {
+  }>(":name", async (request, reply) => {
     const { name } = request.query;
     // Extract hour, mins, am pm from date
     let data;

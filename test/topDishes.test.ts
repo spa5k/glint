@@ -4,7 +4,7 @@ import { describe, expect, it } from "vitest";
 describe("menuSearch", async () => {
   it("should return a list of results", async () => {
     const response = await fetch(
-      "http://localhost:3000/top?max=1000&min=1&limit=5",
+      "http://localhost:3000/top?max=1000&min=1&limit=5"
     );
     const json = await response.json();
 
@@ -13,7 +13,7 @@ describe("menuSearch", async () => {
         json as {
           top: any;
         }
-      ).top.length,
+      ).top.length
     ).toEqual(5);
   });
 
@@ -23,7 +23,7 @@ describe("menuSearch", async () => {
 
     expect(json).toEqual({
       error: "Bad Request",
-      message: "Missing query parameters, please send max,min and limit as params",
+      message: "Missing query parameters, please send max and min as params",
     });
   });
 });

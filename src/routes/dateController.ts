@@ -14,7 +14,7 @@ export default async function dateController(fastify: FastifyInstance) {
   */
   fastify.get<{
     Querystring: IQuerystring;
-  }>("/", async (request, reply) => {
+  }>(":date", async (request, reply) => {
     const date = request.query.date;
     // Extract hour, mins, am pm from date
     const hour = dayjs(date).hour();
@@ -27,8 +27,8 @@ export default async function dateController(fastify: FastifyInstance) {
     try {
       restaurant = await sql`
         select r.name, r.id, o.day, o.hours from restaurant r join opening_hours o on r.id=o.restaurant_id where day=${
-        dayInNumber + 1
-      } and hours @> ${time}::time`;
+          dayInNumber + 1
+        } and hours @> ${time}::time`;
     } catch (err) {
       console.error(err);
     }
