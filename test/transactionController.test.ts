@@ -35,6 +35,7 @@ describe("menuSearch", async () => {
     // Round finalPrice to 2 decimal places
     const roundedFinalPrice = Math.round(finalPrice * 100) / 100;
     const roundedUserBalance =
+      // @ts-ignore
       Math.round(parseFloat(json.user.balance) * 100) / 100;
 
     // @ts-ignore
