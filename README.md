@@ -5,10 +5,12 @@
 ```
 pnpm install
 ```
+or 
 
 ```
 npm install
 ```
+or
 
 ```
 yarn
@@ -28,31 +30,34 @@ or
 
 Run the SQL scripts in DB folder one by one.
 
+
+## 3.2 Seed the Database
+
 ```
 pnpm seed
 ```
 
-# 2. Usage
+# 4. Usage
 
-## 2.1 Start the server -
+## 4.1 Start the server -
 
 ```
 pnpm dev
 ```
 
-## 2.2 Check the API documentation -
+## 4.2 Check the API documentation -
 
 Visit - http://localhost:3000/docs
 
-# 3. How to test?
+# 5. How to test?
 
-## 3.1 Start the server -
+## 5.1 Start the server -
 
 ```
 pnpm dev
 ```
 
-## 3.2 Test the api -
+## 5.2 Test the api -
 
 ```
 pnpm test
