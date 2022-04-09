@@ -2,8 +2,8 @@ import { FastifyInstance } from "fastify";
 import sql from "../config/sql";
 
 interface IQuerystring {
-  greater: number;
-  less: number;
+  max: number;
+  min: number;
   limit: number;
 }
 
@@ -16,26 +16,43 @@ export default async function topDisherController(fastify: FastifyInstance) {
   fastify.get<{
     Querystring: IQuerystring;
   }>("/", async (request, reply) => {
-    const { greater, less, limit } = request.query;
+    const { max, min, limit } = request.query;
     // Extract hour, mins, am pm from date
-    if (!greater || !less || !limit) {
+    if (!max || !min || !limit) {
       reply.code(400).send({
         error: "Bad Request",
-        message: "Missing query parameters, please send greater, less and limit as params",
+        message:
+          "Missing query parameters, please send max,min and limit as params",
       });
       return;
     }
 
-    const data = await sql`
-      select rs.name, rs.id from restaurant rs 
-      left join menu m on m.restaurant_id=rs.id 
-      where m.price between ${less} and ${greater} 
-      group by rs.name, rs.id having count(m.name)>5 
-      order by rs.name limit ${limit};
-    `;
+    let data;
+    try {
+      data = await sql`
+  
+        select rs.name, rs.id from restaurant rs 
+        left join menu m on m.restaurant_id=rs.id 
+        where m.price between ${min} and ${max} 
+        group by rs.name, rs.id having count(m.name)>5 
+        order by rs.name limit ${limit};
+      `;
+    } catch (err) {
+      console.log(err);
+      return reply.code(500).send({
+        error: "Internal Server Error",
+        message: "Something went wrong",
+      });
+    }
+    if (data.length === 0) {
+      return reply.code(404).send({
+        error: "Not Found",
+        message: "No data found",
+      });
+    }
 
-    reply.send({
-      name: data,
+    return reply.send({
+      top: data,
     });
   });
 }

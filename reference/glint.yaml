@@ -325,6 +325,457 @@ paths:
           name: date
           description: Datetime at which opened restaurants needs to be checked
           required: true
+  /search:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                x-examples:
+                  example-1:
+                    name:
+                      - dishName: La Romaine Braisée au Fond de Veau
+                        menuId: 18b68475-7da5-4a78-ad9c-20fe192c3e91
+                        price: '665.73'
+                        restaurantName: '''Ulu Ocean Grill and Sushi Lounge'
+                        restaurantId: 9024854a-356d-4c31-a0cc-fe69c478f76f
+                      - dishName: Hominy
+                        menuId: d93151cb-fe25-45e0-b02f-1ffef7fea8bc
+                        price: '946.95'
+                        restaurantName: '''Ulu Ocean Grill and Sushi Lounge'
+                        restaurantId: 9024854a-356d-4c31-a0cc-fe69c478f76f
+                      - dishName: Baltimore terrapin
+                        menuId: 167c2be1-0f27-4126-ab96-1c1216b26aad
+                        price: '224.02'
+                        restaurantName: '''Ulu Ocean Grill and Sushi Lounge'
+                        restaurantId: 9024854a-356d-4c31-a0cc-fe69c478f76f
+                properties:
+                  result:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      type: object
+                      properties:
+                        dishName:
+                          type: string
+                          minLength: 1
+                        menuId:
+                          type: string
+                          minLength: 1
+                          format: uuid
+                        price:
+                          type: string
+                          minLength: 1
+                        restaurantName:
+                          type: string
+                          minLength: 1
+                        restaurantId:
+                          type: string
+                          minLength: 1
+                          format: uuid
+                      required:
+                        - dishName
+                        - menuId
+                        - price
+                        - restaurantName
+                        - restaurantId
+                required:
+                  - result
+              examples:
+                Combined Restaurant/Menu result example:
+                  value:
+                    result:
+                      - dishName: La Romaine Braisée au Fond de Veau
+                        menuId: 18b68475-7da5-4a78-ad9c-20fe192c3e91
+                        price: '665.73'
+                        restaurantName: '''Ulu Ocean Grill and Sushi Lounge'
+                        restaurantId: 9024854a-356d-4c31-a0cc-fe69c478f76f
+                      - dishName: Hominy
+                        menuId: d93151cb-fe25-45e0-b02f-1ffef7fea8bc
+                        price: '946.95'
+                        restaurantName: '''Ulu Ocean Grill and Sushi Lounge'
+                        restaurantId: 9024854a-356d-4c31-a0cc-fe69c478f76f
+                      - dishName: Baltimore terrapin
+                        menuId: 167c2be1-0f27-4126-ab96-1c1216b26aad
+                        price: '224.02'
+                        restaurantName: '''Ulu Ocean Grill and Sushi Lounge'
+                        restaurantId: 9024854a-356d-4c31-a0cc-fe69c478f76f
+      operationId: get-search
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: name
+          description: name of the dish or restaurant
+          required: true
+      description: Combined Dish/Restaurant searching endpoint
+  /search/menu:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                x-examples:
+                  example-1:
+                    name:
+                      - dishName: Fricassee of chicken
+                        menuId: 77ca16bf-6d08-49ff-b223-c15b67c7e57c
+                        price: '498.62'
+                        restaurantName: A. Michael's
+                        restaurantId: bc961c1e-b1d2-4643-9f42-b40b744211e1
+                      - dishName: Chicken Bouillon with Rice (10 min.)
+                        menuId: 7a5a39ce-2f16-4a2a-a4d5-e8a14bee909d
+                        price: '962.03'
+                        restaurantName: 100% Mexicano Restaurant
+                        restaurantId: 7658a22b-d64d-4045-b1b8-1d799c48f2d5
+                      - dishName: Fried chicken
+                        menuId: 8c4382ae-15b0-4594-af91-a70e5c7adf90
+                        price: '619.03'
+                        restaurantName: 1913 Restaurant
+                        restaurantId: 226eb970-122d-4a27-bf68-405c513edab3
+                properties:
+                  result:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      type: object
+                      properties:
+                        dishName:
+                          type: string
+                          minLength: 1
+                        menuId:
+                          type: string
+                          minLength: 1
+                        price:
+                          type: string
+                          minLength: 1
+                        restaurantName:
+                          type: string
+                          minLength: 1
+                        restaurantId:
+                          type: string
+                          minLength: 1
+                      required:
+                        - dishName
+                        - menuId
+                        - price
+                        - restaurantName
+                        - restaurantId
+                required:
+                  - result
+              examples:
+                Menu's having name as their dish:
+                  value:
+                    result:
+                      - dishName: Fricassee of chicken
+                        menuId: 77ca16bf-6d08-49ff-b223-c15b67c7e57c
+                        price: '498.62'
+                        restaurantName: A. Michael's
+                        restaurantId: bc961c1e-b1d2-4643-9f42-b40b744211e1
+                      - dishName: Chicken Bouillon with Rice (10 min.)
+                        menuId: 7a5a39ce-2f16-4a2a-a4d5-e8a14bee909d
+                        price: '962.03'
+                        restaurantName: 100% Mexicano Restaurant
+                        restaurantId: 7658a22b-d64d-4045-b1b8-1d799c48f2d5
+                      - dishName: Fried chicken
+                        menuId: 8c4382ae-15b0-4594-af91-a70e5c7adf90
+                        price: '619.03'
+                        restaurantName: 1913 Restaurant
+                        restaurantId: 226eb970-122d-4a27-bf68-405c513edab3
+      operationId: get-search-menu
+      description: Menu searching endpoint
+      parameters:
+        - schema:
+            type: string
+            example: chicken
+          in: query
+          name: name
+          required: true
+          description: Name of the dish that needs to be searched in the menu
+  /search/restaurant:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                x-examples:
+                  example-1:
+                    name:
+                      - restaurantName: Ocean Star
+                        restaurantId: 0014893d-2210-427c-9ff6-32cdd840f8b6
+                      - restaurantName: Ocean Star
+                        restaurantId: 0014893d-2210-427c-9ff6-32cdd840f8b6
+                      - restaurantName: Ocean Star
+                        restaurantId: 0014893d-2210-427c-9ff6-32cdd840f8b6
+                      - restaurantName: Ocean Star
+                        restaurantId: 0014893d-2210-427c-9ff6-32cdd840f8b6
+                      - restaurantName: Ocean Star
+                        restaurantId: 0014893d-2210-427c-9ff6-32cdd840f8b6
+                      - restaurantName: Ocean Star
+                        restaurantId: 0014893d-2210-427c-9ff6-32cdd840f8b6
+                properties:
+                  result:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      type: object
+                      properties:
+                        restaurantName:
+                          type: string
+                          minLength: 1
+                        restaurantId:
+                          type: string
+                          minLength: 1
+                          format: uuid
+                      required:
+                        - restaurantName
+                        - restaurantId
+                required:
+                  - result
+              examples:
+                restaurant having Ocean in their name:
+                  value:
+                    result:
+                      - restaurantName: Ocean Star
+                        restaurantId: 0014893d-2210-427c-9ff6-32cdd840f8b6
+                      - restaurantName: Ocean Prime - Denver
+                        restaurantId: 20ac9930-79f8-4038-9a5a-ac6a08f17ed0
+                      - restaurantName: Ocean Prime - Indianapolis
+                        restaurantId: 37e4a1e1-4419-4b22-ace4-11f0f794e69f
+                      - restaurantName: Hapuna-Ocean Terrace
+                        restaurantId: 785f001c-2f00-4227-8ae6-222a0b193eb5
+                      - restaurantName: Mala Ocean Tavern - Lahaina
+                        restaurantId: 854c6088-4834-4bef-a452-3bea3b6d55f6
+                      - restaurantName: OCEAN - Hawks Cay Resort
+                        restaurantId: 89278833-86fa-4b87-822e-20823eb3e38b
+                      - restaurantName: '''Ulu Ocean Grill and Sushi Lounge'
+                        restaurantId: 9024854a-356d-4c31-a0cc-fe69c478f76f
+                      - restaurantName: Wai’olu Ocean View Lounge
+                        restaurantId: a3a5cc7c-f7e6-4352-81ed-6cf761be7a88
+                      - restaurantName: Ocean Pool Bar & Grill - Westin Kaanapali Ocean Resort Villas
+                        restaurantId: b13a02ef-ecd7-42b0-9f4a-d89d5a165d85
+                      - restaurantName: Ocean House Restaurant
+                        restaurantId: b4f6ef13-76a8-47ac-97b9-32cfdad8b759
+                      - restaurantName: Ocean 60
+                        restaurantId: d9e8e00a-1781-467f-b8b4-d23abeaf4f2f
+                      - restaurantName: Azurea at One Ocean
+                        restaurantId: fc17b020-596b-4753-ad59-80af318ae241
+      operationId: get-search-restaurant
+      description: Menu searching endpoint
+      parameters:
+        - schema:
+            type: string
+            example: chicken
+          in: query
+          name: name
+          required: true
+          description: Name of the restaurant that needs to be searched
+    parameters: []
+  /buy:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  user:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        minLength: 1
+                      name:
+                        type: string
+                        minLength: 1
+                      balance:
+                        type: string
+                        minLength: 1
+                      created_at:
+                        type: string
+                        minLength: 1
+                      updated_at:
+                        type: string
+                        minLength: 1
+                    required:
+                      - id
+                      - name
+                      - balance
+                      - created_at
+                      - updated_at
+                required:
+                  - user
+                x-examples:
+                  example-1:
+                    user:
+                      id: 08ba937a-6e03-41da-918e-116ed0a9df34
+                      name: Richard Houston
+                      balance: '386.17'
+                      created_at: '2022-04-08T17:52:18.143Z'
+                      updated_at: '2022-04-08T17:52:18.143Z'
+              examples:
+                Updated balance alongside user info when transaction succeeds:
+                  value:
+                    user:
+                      id: 08ba937a-6e03-41da-918e-116ed0a9df34
+                      name: Richard Houston
+                      balance: '386.17'
+                      created_at: '2022-04-08T17:52:18.143Z'
+                      updated_at: '2022-04-08T17:52:18.143Z'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  error:
+                    type: string
+                    minLength: 1
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                  - error
+                  - message
+                x-examples:
+                  example-1:
+                    error: Bad Request
+                    message: Insufficient balance
+              examples:
+                Error when user does not have sufficient balance:
+                  value:
+                    error: Bad Request
+                    message: Insufficient balance
+      operationId: get-buy
+      parameters:
+        - schema:
+            type: string
+            format: uuid
+          in: query
+          name: userId
+          description: Id of the user that is going to buy
+          required: true
+        - schema:
+            type: string
+            format: uuid
+          in: query
+          name: menuId
+          description: Id of the dish that is going to be bought
+          required: true
+  /top:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                x-examples:
+                  example-1:
+                    name:
+                      - name: 024 Grille
+                        id: 1377c402-7a11-4eb7-9dbe-9f657311021c
+                      - name: 100% Mexicano Restaurant
+                        id: 7658a22b-d64d-4045-b1b8-1d799c48f2d5
+                      - name: 12th Ave. Grill
+                        id: 3d65e220-d208-4644-8977-6cee2b55cbb1
+                      - name: 13 Coins
+                        id: 2fc3ac2f-3998-4221-81ec-42e5fc1f051b
+                      - name: 1515 Restaurant
+                        id: 224e44a3-d70e-44fe-bfa8-c32ce4af504d
+                properties:
+                  top:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          minLength: 1
+                        id:
+                          type: string
+                          minLength: 1
+                      required:
+                        - name
+                        - id
+                required:
+                  - top
+              examples:
+                Sample output with dishes having max min in range:
+                  value:
+                    top:
+                      - name: 024 Grille
+                        id: 1377c402-7a11-4eb7-9dbe-9f657311021c
+                      - name: 100% Mexicano Restaurant
+                        id: 7658a22b-d64d-4045-b1b8-1d799c48f2d5
+                      - name: 12th Ave. Grill
+                        id: 3d65e220-d208-4644-8977-6cee2b55cbb1
+                      - name: 13 Coins
+                        id: 2fc3ac2f-3998-4221-81ec-42e5fc1f051b
+                      - name: 1515 Restaurant
+                        id: 224e44a3-d70e-44fe-bfa8-c32ce4af504d
+      operationId: get-top
+      parameters:
+        - schema:
+            type: number
+            format: float
+            minimum: 2
+            example: 300.1
+          in: query
+          name: max
+          required: true
+          description: Maximum price
+        - schema:
+            type: number
+            format: float
+            minimum: 1
+            example: 100.2
+          in: query
+          name: min
+          description: minimum price
+          required: true
+        - schema:
+            type: integer
+            example: 5
+          in: query
+          name: limit
+          description: limit of restaurants that needs to be found
+          required: true
+      description: ''
 components:
   schemas:
     User:
