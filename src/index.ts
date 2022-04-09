@@ -1,4 +1,5 @@
 import Fastify from "fastify";
+import swagger from "fastify-swagger";
 import router from "./router";
 
 const main = async (): Promise<void> => {
@@ -8,6 +9,16 @@ const main = async (): Promise<void> => {
   });
 
   app.register(router);
+
+  // @ts-ignore
+  await app.register(swagger, {
+    mode: "static",
+    specification: {
+      path: "./reference/glint.yaml",
+    },
+    exposeRoute: true,
+    routePrefix: "/docs",
+  });
 
   // Run the server!
   try {

@@ -17,6 +17,13 @@ export default async function userController(fastify: FastifyInstance) {
     console.log(request.query);
     const userId = request.query.userId;
 
+    // if no user id
+    if (!userId) {
+      return reply.code(400).send({
+        error: "No user id",
+      });
+    }
+
     let user;
     try {
       const [data] = await sql`
