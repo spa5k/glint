@@ -5,13 +5,12 @@
   "main": "index.js",
   "scripts": {
     "dev": "node-dev src/index.ts --notify=false",
-    "seed": "node-dev seed/index.ts --notify=false",
+    "seed": "node dist/seed/index.js",
     "format": "dprint fmt",
     "test": "vitest",
     "coverage": "vitest run --coverage",
-    "build": "yarn tsc",
-    "start": "node dist/src/index.js",
-    "prestart": "yarn seed"
+    "build": "yarn seed",
+    "start": "node dist/src/index.js"
   },
   "keywords": [],
   "author": "",
