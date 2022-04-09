@@ -1,3 +1,4 @@
+import "dotenv/config";
 import Fastify from "fastify";
 import swagger from "fastify-swagger";
 import router from "./router";

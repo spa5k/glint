@@ -8,7 +8,9 @@
     "seed": "node-dev seed/index.ts --notify=false",
     "format": "dprint fmt",
     "test": "vitest",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "build": "tsc",
+    "start": "node dist/src/index.js"
   },
   "keywords": [],
   "author": "",
@@ -30,6 +32,7 @@
   },
   "dependencies": {
     "dayjs": "^1.11.0",
+    "dotenv": "^16.0.0",
     "fastify": "^3.28.0",
     "fastify-swagger": "^5.1.0",
     "postgres": "^3.0.5"

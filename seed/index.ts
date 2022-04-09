@@ -1,4 +1,5 @@
 // We will first seed restaurant data
+import "dotenv/config";
 import postgres from "postgres";
 import sql from "../src/config/sql";
 import { insertMenu } from "../src/functions/insertMenu";
