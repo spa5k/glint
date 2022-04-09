@@ -10,7 +10,8 @@
     "test": "vitest",
     "coverage": "vitest run --coverage",
     "build": "tsc",
-    "start": "node dist/src/index.js"
+    "start": "node dist/src/index.js",
+    "prestart": "pnpm seed"
   },
   "keywords": [],
   "author": "",
