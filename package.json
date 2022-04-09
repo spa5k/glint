@@ -10,8 +10,7 @@
     "test": "vitest",
     "coverage": "vitest run --coverage",
     "build": "node dist/seed/index.js",
-    "start": "node dist/src/index.js",
-    "prestart": "seed"
+    "start": "node dist/src/index.js"
   },
   "keywords": [],
   "author": "",
