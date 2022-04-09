@@ -4,8 +4,9 @@ import router from "./router";
 const main = async (): Promise<void> => {
   // Write a fastify server
   const app = Fastify({
-    logger: false,
+    logger: true,
   });
+
   app.register(router);
 
   // Run the server!

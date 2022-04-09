@@ -26,7 +26,7 @@ export default async function dateController(fastify: FastifyInstance) {
     let restaurant;
     try {
       restaurant = await sql`
-        select * from restaurant join opening_hours on restaurant.id=opening_hours.restaurant_id where day=${
+        select r.name, r.id, o.day, o.hours from restaurant r join opening_hours o on r.id=o.restaurant_id where day=${
         dayInNumber + 1
       } and hours @> ${time}::time`;
     } catch (err) {

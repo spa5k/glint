@@ -20,14 +20,25 @@ export default async function indexController(fastify: FastifyInstance) {
     let restaurant;
     try {
       restaurant = await sql`
-        select * from restaurant join opening_hours on restaurant.id=opening_hours.restaurant_id where day=${
+        select r.name, r.id, o.day, o.hours from restaurant r join opening_hours o on r.id=o.restaurant_id where day=${
         dayInNumber + 1
       } and hours @> ${time}::time`;
     } catch (err) {
       console.error(err);
+      return reply.code(500).send({
+        error: "Internal Server Error",
+        message: "Something went wrong",
+      });
     }
 
-    reply.send({
+    if (!restaurant) {
+      return reply.code(404).send({
+        error: "Not Found",
+        message: "No restaurant found",
+      });
+    }
+
+    return reply.send({
       restaurant,
     });
   });

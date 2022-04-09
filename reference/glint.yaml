@@ -1,0 +1,518 @@
+openapi: 3.0.0
+info:
+  title: glint
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /user:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                x-examples:
+                  example-1:
+                    user:
+                      id: 004c01ed-1e75-4672-836f-64cce11b10bc
+                      name: Edward Patron
+                      balance: '286.77'
+                      created_at: '2022-04-08T17:52:19.508Z'
+                      updated_at: '2022-04-08T17:52:19.508Z'
+                properties:
+                  user:
+                    type: object
+                    required:
+                      - id
+                      - name
+                      - balance
+                      - created_at
+                      - updated_at
+                    properties:
+                      id:
+                        type: string
+                        minLength: 1
+                        format: uuid
+                      name:
+                        type: string
+                        minLength: 1
+                      balance:
+                        type: string
+                        minLength: 1
+                      created_at:
+                        type: string
+                        minLength: 1
+                        format: date-time
+                      updated_at:
+                        type: string
+                        minLength: 1
+                        format: date-time
+                required:
+                  - user
+              examples:
+                Sample user:
+                  value:
+                    user:
+                      id: 004c01ed-1e75-4672-836f-64cce11b10bc
+                      name: Edward Patron
+                      balance: '286.77'
+                      created_at: '2022-04-08T17:52:19.508Z'
+                      updated_at: '2022-04-08T17:52:19.508Z'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  error:
+                    type: string
+                    minLength: 1
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                  - error
+                  - message
+                x-examples:
+                  example-1:
+                    error: Internal Server Error
+                    message: Something went wrong
+              examples:
+                user not found:
+                  value:
+                    error: Not Found
+                    message: User not found
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                Internal Server Error:
+                  value:
+                    error: Internal Server Error
+                    message: Something went wrong
+        '':
+          description: User with its ID
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  user:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        minLength: 1
+                      name:
+                        type: string
+                        minLength: 1
+                      balance:
+                        type: string
+                        minLength: 1
+                      created_at:
+                        type: string
+                        minLength: 1
+                      updated_at:
+                        type: string
+                        minLength: 1
+                    required:
+                      - id
+                      - name
+                      - balance
+                      - created_at
+                      - updated_at
+                required:
+                  - user
+                x-examples:
+                  example-1:
+                    user:
+                      id: 004c01ed-1e75-4672-836f-64cce11b10bc
+                      name: Edward Patron
+                      balance: '286.77'
+                      created_at: '2022-04-08T17:52:19.508Z'
+                      updated_at: '2022-04-08T17:52:19.508Z'
+              examples:
+                Sample User:
+                  value:
+                    user:
+                      id: 004c01ed-1e75-4672-836f-64cce11b10bc
+                      name: Edward Patron
+                      balance: '286.77'
+                      created_at: '2022-04-08T17:52:19.508Z'
+                      updated_at: '2022-04-08T17:52:19.508Z'
+      operationId: get-users
+      description: ''
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: userId
+          description: User's ID
+    parameters: []
+  /:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                x-examples:
+                  example-1:
+                    restaurant:
+                      - name: 100% Mexicano Restaurant
+                        id: 7658a22b-d64d-4045-b1b8-1d799c48f2d5
+                        day: 7
+                        hours: '[01:07:00,15:04:00)'
+                      - name: 12 Baltimore
+                        id: 72f565a7-4161-4565-a472-a8120386457b
+                        day: 7
+                        hours: '[11:44:00,19:43:00)'
+                properties:
+                  restaurant:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          minLength: 1
+                        id:
+                          type: string
+                          minLength: 1
+                          format: uuid
+                        day:
+                          type: integer
+                        hours:
+                          type: string
+                          minLength: 1
+                          example: '[00:44:00,20:37:00)'
+                      required:
+                        - name
+                        - id
+                        - day
+                        - hours
+                required:
+                  - restaurant
+              examples:
+                Restaurant's opened at certain time:
+                  value:
+                    restaurant:
+                      - name: 100% Mexicano Restaurant
+                        id: 7658a22b-d64d-4045-b1b8-1d799c48f2d5
+                        day: 7
+                        hours: '[01:07:00,15:04:00)'
+                      - name: 12 Baltimore
+                        id: 72f565a7-4161-4565-a472-a8120386457b
+                        day: 7
+                        hours: '[11:44:00,19:43:00)'
+                      - name: 15Fifty - Sheraton - Starwood
+                        id: 2dd86b1e-6cee-41e3-a4c7-5e611614adf2
+                        day: 7
+                        hours: '[01:02:00,17:18:00)'
+      operationId: get-*
+      description: This will return the restaurants opened at the time request is done
+    parameters: []
+  /date:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                x-examples:
+                  example-1:
+                    restaurant:
+                      - name: 024 Grille
+                        id: 1377c402-7a11-4eb7-9dbe-9f657311021c
+                        day: 5
+                        hours: '[08:27:00,23:28:00)'
+                      - name: 100% de Agave
+                        id: 8a675692-ba81-4776-ae79-167d1f4e156e
+                        day: 5
+                        hours: '[10:08:00,22:53:00)'
+                      - name: 1808 American Bistro
+                        id: 26f79dec-2a80-4094-be63-fdf7c75f6f66
+                        day: 5
+                        hours: '[04:18:00,23:33:00)'
+                      - name: 24 Plates
+                        id: a3f6bacf-75c2-4abe-a04b-0736cd87947d
+                        day: 5
+                        hours: '[07:54:00,23:58:00)'
+                properties:
+                  restaurant:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          minLength: 1
+                        id:
+                          type: string
+                          minLength: 1
+                          format: uuid
+                        day:
+                          type: integer
+                        hours:
+                          type: string
+                          minLength: 1
+                          example: '[07:54:00,23:58:00)'
+                      required:
+                        - name
+                        - id
+                        - day
+                        - hours
+                required:
+                  - restaurant
+              examples:
+                Restaurants opened at certain date time:
+                  value:
+                    restaurant:
+                      - name: 024 Grille
+                        id: 1377c402-7a11-4eb7-9dbe-9f657311021c
+                        day: 5
+                        hours: '[08:27:00,23:28:00)'
+                      - name: 100% de Agave
+                        id: 8a675692-ba81-4776-ae79-167d1f4e156e
+                        day: 5
+                        hours: '[10:08:00,22:53:00)'
+                      - name: 1808 American Bistro
+                        id: 26f79dec-2a80-4094-be63-fdf7c75f6f66
+                        day: 5
+                        hours: '[04:18:00,23:33:00)'
+                      - name: 24 Plates
+                        id: a3f6bacf-75c2-4abe-a04b-0736cd87947d
+                        day: 5
+                        hours: '[07:54:00,23:58:00)'
+      operationId: get-date
+      parameters:
+        - schema:
+            type: string
+            example: '2022-04-07T10:43:58.022Z'
+            format: date-time
+          in: query
+          name: date
+          description: Datetime at which opened restaurants needs to be checked
+          required: true
+components:
+  schemas:
+    User:
+      title: User
+      type: object
+      description: User Model
+      x-examples:
+        Sample user:
+          id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+          name: Spark the great
+          balance: 100.01
+          created_at: '2019-08-24T14:15:22Z'
+          updated_at: '2019-08-24T14:15:22Z'
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the given user.
+          format: uuid
+        name:
+          type: string
+        balance:
+          type: number
+          format: float
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+        - id
+        - name
+        - balance
+        - created_at
+        - updated_at
+    Restaurant:
+      description: Restaurant Model
+      type: object
+      x-examples:
+        Restaurant Example:
+          balance: -3.402823669209385e+38
+          name: string
+          id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+          created_at: '2019-08-24T14:15:22Z'
+          updated_at: '2019-08-24T14:15:22Z'
+      properties:
+        balance:
+          type: number
+          format: float
+        name:
+          type: string
+          minLength: 1
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+        - balance
+        - name
+        - id
+        - created_at
+        - updated_at
+    Menu:
+      description: ''
+      type: object
+      x-examples:
+        Same Menu:
+          id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+          price: -3.402823669209385e+38
+          name: string
+          restaurant_id: 72223a13-a381-496e-9cbe-9cb7ee501933
+          created_at: string
+          updated_at: string
+      properties:
+        id:
+          type: string
+          minLength: 1
+          format: uuid
+        price:
+          type: number
+          format: float
+        name:
+          type: string
+          minLength: 1
+        restaurant_id:
+          type: string
+          minLength: 1
+          format: uuid
+        created_at:
+          type: string
+          minLength: 1
+          readOnly: true
+        updated_at:
+          type: string
+          minLength: 1
+          readOnly: true
+      required:
+        - id
+        - price
+        - name
+        - restaurant_id
+        - created_at
+        - updated_at
+    History:
+      description: ''
+      type: object
+      x-examples:
+        History Example:
+          id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+          amount: -3.402823669209385e+38
+          menu_id: 46d9403c-fd04-45b3-9f58-e8c1e7e51649
+          user_id: a169451c-8525-4352-b8ca-070dd449a1a5
+          created_at: '2019-08-24T14:15:22Z'
+          updated_at: '2019-08-24T14:15:22Z'
+      properties:
+        id:
+          type: string
+          minLength: 1
+          format: uuid
+        amount:
+          type: number
+          format: float
+        menu_id:
+          type: string
+          minLength: 1
+          format: uuid
+        user_id:
+          type: string
+          minLength: 1
+          format: uuid
+        created_at:
+          type: string
+          minLength: 1
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          minLength: 1
+          format: date-time
+          readOnly: true
+      required:
+        - id
+        - amount
+        - menu_id
+        - user_id
+        - created_at
+        - updated_at
+    OpeningHours:
+      description: ''
+      type: object
+      x-examples:
+        Sample Opening Hours:
+          id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+          restaurant_id: 72223a13-a381-496e-9cbe-9cb7ee501933
+          day: 1
+          hours: string
+      properties:
+        id:
+          type: string
+          minLength: 1
+          format: uuid
+          readOnly: true
+        restaurant_id:
+          type: string
+          minLength: 1
+          format: uuid
+          readOnly: true
+        day:
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 7
+        hours:
+          type: string
+          minLength: 1
+      required:
+        - id
+        - restaurant_id
+        - day
+        - hours

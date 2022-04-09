@@ -21,8 +21,7 @@ export default async function transactionController(fastify: FastifyInstance) {
     if (!menuId || !userId) {
       reply.code(400).send({
         error: "Bad Request",
-        message:
-          "Missing query parameters, please send menuId and userId as params",
+        message: "Missing query parameters, please send menuId and userId as params",
       });
       return;
     }
