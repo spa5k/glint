@@ -20,3 +20,7 @@ CREATE TRIGGER tsvectorupdateres BEFORE INSERT OR UPDATE
 
 -- migrate:down
 
+DROP INDEX IF EXISTS document_restaurant_idx;
+DROP FUNCTION IF EXISTS restaurant_tsvector_trigger();
+ALTER TABLE restaurant DROP COLUMN document;
+DROP TRIGGER IF EXISTS tsvectorupdateres ON menu;

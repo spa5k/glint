@@ -26,9 +26,6 @@ ALTER TABLE history
 
 -- Delete the foreign key constraints
 ALTER TABLE history
-  DROP CONSTRAINT IF EXISTS restaurant_history_fk;
-
-ALTER TABLE history
   DROP CONSTRAINT IF EXISTS menu_history_fk;
 
 ALTER TABLE history

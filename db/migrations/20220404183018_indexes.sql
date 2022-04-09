@@ -10,3 +10,12 @@ CREATE INDEX price_menu_his on history ("menu_id");
 CREATE INDEX price_user_his on history ("user_id");
 -- migrate:down
 
+
+DROP INDEX IF EXISTS name_res;
+DROP INDEX IF EXISTS name_user;
+DROP INDEX IF EXISTS name_menu;
+DROP INDEX IF EXISTS price;
+DROP INDEX IF EXISTS price_user;
+DROP INDEX IF EXISTS price_his;
+DROP INDEX IF EXISTS price_menu_his;
+DROP INDEX IF EXISTS price_user_his;

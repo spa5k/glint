@@ -34,3 +34,6 @@ create table opening_hours (
 --   values (1, 1, timerange(time '2:30pm', time '8:00pm'))
 -- migrate:down
 
+DROP FUNCTION IF EXISTS time_subtype_diff();
+DROP TABLE IF EXISTS opening_hours;
+DROP TYPE IF EXISTS timerange;
