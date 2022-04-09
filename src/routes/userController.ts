@@ -20,7 +20,8 @@ export default async function userController(fastify: FastifyInstance) {
     // if no user id
     if (!userId) {
       return reply.code(400).send({
-        error: "No user id",
+        error: "No such user",
+        message: "No user id provided",
       });
     }
 
