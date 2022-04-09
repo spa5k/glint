@@ -24,8 +24,13 @@ docker-compose up
 
 # 3. Seed the database
 
+## 3.1 Do the migrations
 Install [DbMate](https://github.com/amacneil/dbmate)
 
+and then do 
+```
+dbmate up
+```
 or
 
 Run the SQL scripts in DB folder one by one.
