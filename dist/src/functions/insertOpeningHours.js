@@ -1,8 +1,14 @@
 "use strict";
+var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cooked, raw) {
+    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+    return cooked;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 exports.__esModule = true;
 exports.insertOpeningHours = void 0;
-var tslib_1 = require("tslib");
-var sql_1 = tslib_1.__importDefault(require("../config/sql"));
+var sql_1 = __importDefault(require("../config/sql"));
 var dayToDayString_1 = require("../utils/dayToDayString");
 var extractDay_1 = require("../utils/extractDay");
 var insertOpeningHours = function (restaurantId) {
@@ -18,7 +24,7 @@ var insertOpeningHours = function (restaurantId) {
         }
         daysDone.push(dayNumber);
         try {
-            var promise = (0, sql_1["default"])(templateObject_2 || (templateObject_2 = tslib_1.__makeTemplateObject(["\n          insert into opening_hours(restaurant_id, day, hours)\n          values (", ", ", ", ", ") returning id"], ["\n          insert into opening_hours(restaurant_id, day, hours)\n          values (", ", ", ", ", ") returning id"])), restaurantId, dayNumber + 1, (0, sql_1["default"])(templateObject_1 || (templateObject_1 = tslib_1.__makeTemplateObject(["timerange(", ", ", ")"], ["timerange(", ", ", ")"])), openingHour, closingHour));
+            var promise = (0, sql_1["default"])(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n          insert into opening_hours(restaurant_id, day, hours)\n          values (", ", ", ", ", ") returning id"], ["\n          insert into opening_hours(restaurant_id, day, hours)\n          values (", ", ", ", ", ") returning id"])), restaurantId, dayNumber + 1, (0, sql_1["default"])(templateObject_1 || (templateObject_1 = __makeTemplateObject(["timerange(", ", ", ")"], ["timerange(", ", ", ")"])), openingHour, closingHour));
             promiseArr.push(promise);
         }
         catch (error) {

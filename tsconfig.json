@@ -3,7 +3,6 @@
     "allowSyntheticDefaultImports": true,
     "module": "CommonJS",
     "lib": ["esnext", "ES2017"],
-    "importHelpers": true,
     // output .d.ts declaration files for consumers
     "declaration": true,
     "resolveJsonModule": true,
