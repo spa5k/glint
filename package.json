@@ -9,9 +9,9 @@
     "format": "dprint fmt",
     "test": "vitest",
     "coverage": "vitest run --coverage",
-    "build": "tsc",
+    "build": "yarn tsc",
     "start": "node dist/src/index.js",
-    "prestart": "pnpm seed"
+    "prestart": "yarn seed"
   },
   "keywords": [],
   "author": "",
